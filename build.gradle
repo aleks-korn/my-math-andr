@@ -14,7 +14,6 @@ sonarqube {
         property "sonar.projectKey", "aleks-korn_my-math-andr"
         property "sonar.organization", "aleks-korn"
         property "sonar.host.url", "https://sonarcloud.io"
-        //property "sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml"
         property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml")
     }
 }
@@ -24,7 +23,7 @@ detekt {
     toolVersion = "1.20.0"
     config = files("config/detekt/detekt.yml")
     baseline = file("config/detekt/baseline.xml")
-    reportsDir = file("build/reports/detekt.xml")
+    reportsDir = file("build/reports/detekt")
     buildUponDefaultConfig = false
     debug = false
     ignoreFailures = true
