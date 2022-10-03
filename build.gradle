@@ -14,9 +14,11 @@ sonarqube {
         property "sonar.projectKey", "aleks-korn_my-math-andr"
         property "sonar.organization", "aleks-korn"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml"
+        //property "sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml"
+        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml")
     }
 }
+
 
 detekt {
     toolVersion = "1.20.0"
@@ -26,18 +28,6 @@ detekt {
     buildUponDefaultConfig = false
     debug = false
     ignoreFailures = true
-}
-
-// Kotlin DSL
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-	reports {
-		html.required.set(true)
-		html.outputLocation.set(file("build/reports/detekt.html"))
-		xml.required.set(true)
-		xml.outputLocation.set(file("build/reports/detekt.xml"))
-		txt.required.set(false)
-		sarif.required.set(false)
-	}
 }
 
 
