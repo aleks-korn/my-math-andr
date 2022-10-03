@@ -28,6 +28,18 @@ detekt {
     ignoreFailures = true
 }
 
+// Kotlin DSL
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+	reports {
+		html.required.set(true)
+		html.outputLocation.set(file("build/reports/detekt.html"))
+		xml.required.set(true)
+		xml.outputLocation.set(file("build/reports/detekt.xml"))
+		txt.required.set(false)
+		sarif.required.set(false)
+	}
+}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
