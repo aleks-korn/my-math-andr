@@ -5,7 +5,6 @@ plugins {
 
     //sonarcloud and code coverage
     id "org.sonarqube" version "3.4.0.2513"
-    id("io.gitlab.arturbosch.detekt") version "1.20.0"
 }
 
 sonarqube {
@@ -13,36 +12,9 @@ sonarqube {
         property "sonar.projectKey", "aleks-korn_my-math-andr"
         property "sonar.organization", "aleks-korn"
         property "sonar.host.url", "https://sonarcloud.io"
-        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt.xml")
     }
 }
 
-
-detekt {
-    toolVersion = "1.20.0"
-    reportsDir = file("build/reports/detekt")
-    source = files(
-        "app/src/main/java",
-        "app/src/test/java"
-    )
-    debug = false
-    ignoreFailures = true
-}
-
-// Kotlin DSL
-tasks.named("detekt").configure {
-    reports {
-        // Enable/Disable XML report (default: true)
-        xml.required.set(true)
-        xml.outputLocation.set(file("build/reports/detekt.xml"))
-        // Enable/Disable HTML report (default: true)
-        html.required.set(true)
-        html.outputLocation.set(file("build/reports/detekt.html"))
-        // Enable/Disable TXT report (default: true)
-        txt.required.set(true)
-        txt.outputLocation.set(file("build/reports/detekt.txt"))
-    }
-}
 
 android {
     compileSdk 32
