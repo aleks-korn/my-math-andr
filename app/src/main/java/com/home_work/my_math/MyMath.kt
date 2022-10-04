@@ -22,4 +22,9 @@ class MyMath {
             0
         }
     }
+
+
+    fun doSomething(){
+        println("Do Something!!!")
+    }
 }
