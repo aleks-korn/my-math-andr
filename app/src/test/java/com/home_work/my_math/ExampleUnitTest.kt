@@ -39,4 +39,8 @@ class ExampleUnitTest {
         val res = myMath.divide(8, 2)
         assertEquals(ex,res)
     }
+
+    fun testDoSomething(){
+        myMath.doSomething()
+    }
 }
