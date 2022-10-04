@@ -6,6 +6,7 @@ plugins {
 
     //sonarcloud and code coverage
     id "org.sonarqube" version "3.4.0.2513"
+    id "jacoco"
 }
 
 sonarqube {
@@ -15,6 +16,23 @@ sonarqube {
         property "sonar.host.url", "https://sonarcloud.io"
     }
 }
+
+/*test {
+    finalizedBy(tasks.jacocoTestReport)//Code coverage will be generated every time tests run.
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.enabled false
+        html.enabled true
+        csv.enabled true
+    }
+}*/
 
 task clean(type: Delete) {
     delete rootProject.buildDir
