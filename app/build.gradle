@@ -20,10 +20,7 @@ sonarqube {
 
 detekt {
     toolVersion = "1.20.0"
-    config = files("config/detekt/detekt.yml")
-	 baseline = file("config/detekt/baseline.xml")
     reportsDir = file("build/reports/detekt")
-    buildUponDefaultConfig = false
     debug = false
     ignoreFailures = true
 }
