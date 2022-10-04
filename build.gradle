@@ -29,7 +29,7 @@ detekt {
 }
 
 // Kotlin DSL
-tasks.named("detekt").configureEach{
+tasks.named("detekt").configure {
     reports {
         // Enable/Disable XML report (default: true)
         xml.required.set(true)
