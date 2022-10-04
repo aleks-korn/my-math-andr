@@ -22,16 +22,14 @@ sonarqube {
 
 detekt {
     toolVersion = "1.20.0"
-    config = files("config/detekt/detekt.yml")
-    baseline = file("config/detekt/baseline.xml")
     reportsDir = file("build/reports/detekt")
-    buildUponDefaultConfig = false
+    buildUponDefaultConfig = true
     debug = false
     ignoreFailures = true
 }
 
 // Kotlin DSL
-tasks.named("detekt").configure {
+tasks.named("detekt").configureEach{
     reports {
         // Enable/Disable XML report (default: true)
         xml.required.set(true)
