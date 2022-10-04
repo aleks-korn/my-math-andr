@@ -1,4 +1,18 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlinx:kover:0.6.1'
+    }
+}
+
+
+
 plugins {
     //id 'com.android.application' version '7.2.0' apply false
     id 'com.android.library' version '7.2.0' apply false
@@ -7,8 +21,10 @@ plugins {
     //sonarcloud and code coverage
     id "org.sonarqube" version "3.4.0.2513"
     id "jacoco"
+    id 'org.jetbrains.kotlinx.kover' version '0.6.1'
 }
 
+apply plugin: 'kover'
 sonarqube {
     properties {
         property "sonar.projectKey", "aleks-korn_my-math-andr"
