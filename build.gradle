@@ -9,6 +9,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.20.0"
 }
 
+
 sonarqube {
     properties {
         property "sonar.projectKey", "aleks-korn_my-math-andr"
@@ -29,6 +30,20 @@ detekt {
     ignoreFailures = true
 }
 
+// Kotlin DSL
+tasks.named("detekt").configure {
+    reports {
+        // Enable/Disable XML report (default: true)
+        xml.required.set(true)
+        xml.outputLocation.set(file("build/reports/detekt.xml"))
+        // Enable/Disable HTML report (default: true)
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
+        // Enable/Disable TXT report (default: true)
+        txt.required.set(true)
+        txt.outputLocation.set(file("build/reports/detekt.txt"))
+    }
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
