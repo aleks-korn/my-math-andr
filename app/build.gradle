@@ -21,6 +21,10 @@ sonarqube {
 detekt {
     toolVersion = "1.20.0"
     reportsDir = file("build/reports/detekt")
+    source = files(
+        "app/src/main/java",
+        "app/src/test/java"
+    )
     debug = false
     ignoreFailures = true
 }
