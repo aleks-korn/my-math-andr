@@ -13,6 +13,7 @@ plugins {
 var dirr = "$buildDir/reports/jacoco/test"
 
 apply plugin: 'java'
+apply plugin: 'jacoco'
 
 sonarqube {
     properties {
@@ -25,19 +26,20 @@ sonarqube {
 
 jacoco {
     toolVersion = "0.8.8"
+    //reportsDirectory = layout.buildDirectory.dir(dirr)
 }
 
-tasks.withType(Test)  {
+test {
     finalizedBy jacocoTestReport //Code coverage will be generated every time tests run.
 }
 
 jacocoTestReport  {
     dependsOn test
-    reports {
+    /*reports {
         xml.enabled true
         html.enabled true
         csv.enabled true
-    }
+    }*/
 }
 
 /*task clean(type: Delete) {
