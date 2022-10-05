@@ -1,19 +1,39 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    //id 'com.android.application' version '7.2.0' apply false
-    id 'com.android.library' version '7.2.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
 
-    //sonarcloud and code coverage
-    id "org.sonarqube" version "3.4.0.2513"
-    id "jacoco"
 
+
+buildscript {
+    ext.kotlin_version = '1.6.0'
+    ext.gradleVersion = '3.6.4'
+    ext.dokka_version = "1.4.10.2"
+    ext.jacocoVersion = '0.8.4'
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        classpath 'com.google.gms:google-services:3.1.1'
+
+
+        //test coverage
+        classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
 }
 
-var dirr = "$buildDir/reports/jacoco/test"
+plugins {
+    //sonarcloud and code coverage
+    id "org.sonarqube" version "3.4.0.2513"
+}
 
-apply plugin: 'java'
-apply plugin: 'jacoco'
+
 
 sonarqube {
     properties {
@@ -24,24 +44,16 @@ sonarqube {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.8"
-    //reportsDirectory = layout.buildDirectory.dir(dirr)
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
 }
 
-test {
-    finalizedBy jacocoTestReport //Code coverage will be generated every time tests run.
-}
-
-jacocoTestReport  {
-    dependsOn test
-    /*reports {
-        xml.enabled true
-        html.enabled true
-        csv.enabled true
-    }*/
-}
-
-/*task clean(type: Delete) {
+task clean(type: Delete) {
     delete rootProject.buildDir
-}*/
+}
