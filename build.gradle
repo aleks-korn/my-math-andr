@@ -19,13 +19,12 @@ sonarqube {
         property "sonar.projectKey", "aleks-korn_my-math-andr"
         property "sonar.organization", "aleks-korn"
         property "sonar.host.url", "https://sonarcloud.io"
-        property"sonar.coverage.jacoco.xmlReportPaths", dirr
+
     }
 }
 
 jacoco {
     toolVersion = "0.8.8"
-    reportsDirectory = layout.buildDirectory.dir(dirr)
 }
 
 tasks.withType(Test)  {
